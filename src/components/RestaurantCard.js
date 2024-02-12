@@ -4,7 +4,14 @@ const RestaurantCard=(props)=>{
     //  const{img,resName,price,stars,time}=props;//Destructure The Props
     const{resData}=props;
     const{info}=resData;
-      console.log("OBJ",props,resData,info,info.sla?.deliveryTime);
+    const dict={
+        key:0,
+        count:0,
+    }
+    let counterMapper=[];
+    const arrayList=[1,1,1,2,3,44,3,3,3,5,6,7,8,9,10,4,7,8];
+
+      console.log("OBJEct Kiitu Here",props,resData,info,info.sla?.deliveryTime,"--->>>>",props.variable);
       return (
       <div className="restaurant-card">
           <img 

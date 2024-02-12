@@ -4,7 +4,7 @@
   "description": "\"Namsta react Learning\"",
   "main": "App.js",
   "scripts": {
-    "start":"parcel index.html",
+    "start": "parcel index.html",
     "test": "jest"
   },
   "repository": {
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.0"
   }
 }

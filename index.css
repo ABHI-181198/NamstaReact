@@ -41,3 +41,14 @@
     padding: 3px;
     margin: 3px;
 }
+.shimmer-card{
+    background-color: #fff0f5;
+    width: 16%;
+    height: 300px;
+    margin: 12px;
+    padding: 5px;
+}
+.shimmer-containner{
+    display: flex;
+    word-wrap: break-word;
+}
