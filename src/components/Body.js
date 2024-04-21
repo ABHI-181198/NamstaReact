@@ -3,6 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 
 const Body=()=>{
     console.log("Body render");
@@ -10,6 +11,8 @@ const Body=()=>{
      const[search,setSearch]=useState("");
      const[noData,setNoData]=useState(false);
      const[filteredList,setFilteredList]=useState([]);
+     const onlineStatus=useOnlineStatus();
+     console.log("OnlineStatus",onlineStatus);
      // restaurants are the List of Objects
      const handleClick=(e)=>{
            const filterList=topRatedList.filter((elem)=>{
@@ -51,15 +54,15 @@ const Body=()=>{
 
      console.log("After use effect called");
      fetchData=async ()=>{
-        const data=await fetch("https://www.swiggy.com/api/seo/getListing?lat=19.224272&lng=73.1484649")
+        const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.224272&lng=73.1484649&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
         const json=await data.json();
         console.log("data",data,"json",json);
-        console.log(json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setTopRatedList(json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredList(json?.data?.success?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        console.log(json?.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
+        setTopRatedList(json?.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
+        setFilteredList(json?.data.cards[4].card.card.gridElements.infoWithStyle.restaurants)
      }
     return (
-    topRatedList?.length===0?(<Shimmer/>):
+    topRatedList?.length===0?(<Shimmer/>):onlineStatus?(
     <div className="body">
         <div className="filter">
             <button 
@@ -100,6 +103,11 @@ const Body=()=>{
         )}          
         </div>
     </div>
+    ):<>
+    <div>
+        <h3>It's Look Like You are offline Please Check Your Internet Connection!!!</h3>
+    </div>
+    </>
     )
 }
 export default Body;

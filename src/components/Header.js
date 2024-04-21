@@ -1,8 +1,10 @@
 import { LOGO_URL } from "../../utils/constants";
 import{Link} from "react-router-dom";
 import { useState,useEffect } from "react";
+import useOnlineStatus from "../../utils/useOnlineStatus";
 const Header=()=>{
     const[btnLogin,setBtnLogin]=useState("Login");
+    const onlineStatus=useOnlineStatus();
     loginButton=()=>{
         // console.log("Button",btnLogin)
         setBtnLogin(btnLogin==="Login"?"Logout":"Login");
@@ -30,6 +32,9 @@ const Header=()=>{
             <div className="nav-items">
                 <ul>
                     <li>
+                        ONLine Status:{onlineStatus?"🟢":"🔴"}
+                    </li>
+                    <li>
                         {
                             // way to give routing path for Specific Component
                         }
@@ -41,7 +46,13 @@ const Header=()=>{
                     <li>
                           <Link to="contact">Contact</Link>
                     </li>
-                    <li>Cart</li>
+                    {/* <li>Cart</li> */}
+                    <li>
+                        <Link to="/grocery">Grocery</Link>
+                    s</li>
+                    <li>
+                        <Link to="/cart">Cart</Link>
+                    </li>
                     <li>
                         <button onClick=
                         {loginButton}>
